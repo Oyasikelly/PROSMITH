@@ -7,6 +7,8 @@ import {
 	SlideInRightWhenVisible,
 } from "./animations/slideInAnimations";
 import { AnimatePresence, motion } from "framer-motion";
+import { Button } from "./ui/button";
+import Link from "next/link";
 
 const faqs = [
 	{
@@ -61,12 +63,16 @@ export default function FAQ() {
 					</p>
 				</SlideInLeftWhenVisible>
 				<FadeInWhenVisible>
-					<button className="hidden md:flex order-2 md:order-1 items-center gap-3 bg-primary text-white px-6 py-3 rounded-md font-medium hover:bg-primary/70 transition group">
-						Connect with Us
-						<span className="bg-white p-1 rounded-full group-hover:translate-x-3 transition-all duration-300 text-primary">
-							<FiArrowRight size={18} />
-						</span>
-					</button>
+					<Link href="./contact">
+						<Button
+							variant="default"
+							className="hidden md:flex order-2 md:order-1 items-center gap-3 bg-primary text-white px-6 py-3 rounded-md font-medium hover:bg-primary/70 transition group">
+							Connect with Us
+							<span className="bg-white p-1 rounded-full group-hover:translate-x-3 transition-all duration-300 text-primary">
+								<FiArrowRight size={18} />
+							</span>
+						</Button>
+					</Link>
 				</FadeInWhenVisible>
 			</div>
 
@@ -106,12 +112,16 @@ export default function FAQ() {
 				))}
 				<FadeInWhenVisible>
 					<div className="flex items-center justify-center">
-						<button className="flex md:hidden items-center gap-3 bg-primary text-white mt-8 px-6 py-3 rounded-md font-medium hover:bg-primary/70 transition">
-							Connect with Us
-							<span className="bg-white p-1 rounded-full hover:translate-x-3 transition-all duration-300 text-primary">
-								<FiArrowRight size={18} />
-							</span>
-						</button>
+						<Link href="./contact">
+							<Button
+								variant="default"
+								className="flex md:hidden items-center gap-3 bg-primary text-white mt-8 px-6 py-3 rounded-md font-medium hover:bg-primary/70 transition">
+								Connect with Us
+								<span className="bg-white p-1 rounded-full hover:translate-x-3 transition-all duration-300 text-primary">
+									<FiArrowRight size={18} />
+								</span>
+							</Button>
+						</Link>
 					</div>
 				</FadeInWhenVisible>
 			</div>

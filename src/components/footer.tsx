@@ -53,10 +53,11 @@ export default function Footer() {
 							<div>
 								<h3 className="font-semibold text-lg mb-3">Contact Us</h3>
 								<p className="flex items-center gap-2 text-white/70">
-									<FaPhoneAlt /> (123) 456-7890
+									<FaPhoneAlt /> +234 816 809 0487
 								</p>
 								<p className="flex items-center gap-2 text-white/70">
-									<FaEnvelope /> info@prosmith.com
+									<FaEnvelope />
+									prosmithenterprise@gmail.com
 								</p>
 							</div>
 						</SlideInRightWhenVisible>

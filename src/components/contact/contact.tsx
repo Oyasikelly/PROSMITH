@@ -142,27 +142,27 @@ function ContactForm() {
 							<SlideInLeftWhenVisible>
 								<div className="flex items-center gap-3">
 									<Phone className="w-5 h-5 text-white/70" />
-									<span>+123-456-7890</span>
+									<span>+23408168090487</span>
 								</div>
 							</SlideInLeftWhenVisible>
 							<SlideInRightWhenVisible>
 								<div className="flex items-center gap-3">
 									<Mail className="w-5 h-5 text-white/70" />
-									<span>hello@reallygreatsite.com</span>
+									<span>prosmithenterprise@gmail.com</span>
 								</div>
 							</SlideInRightWhenVisible>
 							<SlideInLeftWhenVisible>
 								<div className="flex items-center gap-3">
 									<MapPin className="w-5 h-5 text-white/70" />
-									<span>123 Anywhere St., Any City</span>
+									<span>Warri, Delta, Nigeria</span>
 								</div>
 							</SlideInLeftWhenVisible>
-							<SlideInRightWhenVisible>
+							{/* <SlideInRightWhenVisible>
 								<div className="flex items-center gap-3">
 									<Globe className="w-5 h-5 text-white/70" />
 									<span>www.reallygreatsite.com</span>
 								</div>
-							</SlideInRightWhenVisible>
+							</SlideInRightWhenVisible> */}
 						</div>
 					</div>
 
