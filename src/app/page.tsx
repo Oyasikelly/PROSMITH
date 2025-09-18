@@ -13,6 +13,12 @@ import {
 	SlideInRightWhenVisible,
 } from "@/components/animations/slideInAnimations";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Home",
+};
+
 function WelcomeBanner() {
 	return (
 		<section className="h-screen w-full">
