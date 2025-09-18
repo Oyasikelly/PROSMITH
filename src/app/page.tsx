@@ -36,17 +36,17 @@ function WelcomeBanner() {
 
 							<SlideInLeftWhenVisible>
 								<p className="text-lg md:text-2xl mb-8">
-									Your trusted partner for professional services <br />
-									that deliver results.
+									Powering homes and businesses with reliable solar and
+									electrical services.
 								</p>
 							</SlideInLeftWhenVisible>
 
 							<SlideInLeftWhenVisible>
 								<p className="text-base md:text-xl mb-8">
-									We specialize in connecting you with top experts to help your
-									business grow and succeed. <br />
-									Discover tailored solutions designed to meet your unique
-									needs.
+									At Prosmith, we connect you with top experts to deliver energy
+									solutions that reduce costs, improve efficiency, and support a
+									sustainable future. Discover customized installations designed
+									to meet your unique needs.
 								</p>
 							</SlideInLeftWhenVisible>
 
@@ -90,28 +90,32 @@ function About() {
 					<div className="">
 						<SlideInLeftWhenVisible>
 							<h2 className="text-2xl md:text-4xl mb-4 font-semibold">
-								Prosmith: Your Partner in Professional Excellence
+								Prosmith: Your Partner in Power and Professional Excellence
 							</h2>
 						</SlideInLeftWhenVisible>
 
 						<SlideInRightWhenVisible>
 							<p className="mb-4">
-								Prosmith is a leading provider of business solutions,
-								specializing in connecting organizations with top-tier experts
-								across consulting, project management, and technical support.
-								Since our founding in 2023, we have helped businesses of all
-								sizes unlock growth and achieve their goals through tailored
-								strategies and hands-on guidance.
+								Prosmith is a trusted provider of solar and electrical
+								solutions, dedicated to powering homes, businesses, and
+								communities with safe, efficient, and sustainable energy. Since
+								our founding in 2023, we have helped clients reduce energy
+								costs, improve efficiency, and embrace renewable solutions that
+								create lasting impact.
 							</p>
 						</SlideInRightWhenVisible>
 
 						<SlideInLeftWhenVisible>
 							<p className="mb-4">
-								Our team is comprised of skilled professionals with deep
-								industry experience, committed to delivering measurable results
-								and building lasting partnerships. We pride ourselves on our
-								client-centric approach, transparency, and dedication to
-								quality.
+								Our team is made up of skilled engineers, electricians, and
+								energy experts with years of industry experience. We pride
+								ourselves on delivering measurable results through reliable
+								installations, smart designs, and tailored electrical services
+								that meet the unique needs of each client. At Prosmith, we
+								believe in more than just providing services—we build lasting
+								partnerships. With a client-first approach, transparency, and an
+								unwavering commitment to quality, we ensure that every project
+								we handle drives growth, safety, and sustainability.
 							</p>
 						</SlideInLeftWhenVisible>
 
@@ -159,16 +163,17 @@ function Services() {
 				<div className="md:col-span-2 py-0 md:pb-6">
 					<SlideInRightWhenVisible>
 						<p className="text-base md:text-lg mb-4">
-							At Prosmith, we offer a comprehensive range of professional
-							services designed to meet the diverse needs of our clients. Our
-							expertise spans various industries, allowing us to provide
-							tailored solutions that drive success and foster growth.
+							At Prosmith, we offer a comprehensive range of solar and
+							electrical services designed to meet the diverse needs of our
+							clients. Our expertise covers residential, commercial, and
+							industrial projects, allowing us to deliver tailored energy
+							solutions that ensure safety, efficiency, and sustainability.
 						</p>
 						<p className="text-base md:text-lg">
-							Whether you&apos;re looking for strategic consulting, project
-							management, or specialized technical support, our team of
-							experienced professionals is here to help you navigate complex
-							challenges and achieve your business objectives with confidence.
+							Whether you need solar installations, electrical wiring, inverter
+							systems, or reliable maintenance, our team of experienced
+							professionals is here to provide trusted support and help you
+							achieve your energy goals with confidence.
 						</p>
 					</SlideInRightWhenVisible>
 				</div>
@@ -222,10 +227,11 @@ function Projects() {
 						<span className="border-b-2 border-primary pb-1">Projects</span>
 					</h2>
 					<p className="text-base md:text-lg mb-12">
-						Explore our portfolio of successful projects that showcase our
-						expertise and commitment to excellence. From innovative solutions to
-						transformative outcomes, see how we&apos;ve helped our clients
-						achieve their goals.
+						Explore our portfolio of successful projects that highlight our
+						expertise in solar and electrical solutions. From innovative
+						installations to reliable maintenance, see how we&apos;ve powered
+						homes, businesses, and communities with safe, efficient, and
+						sustainable energy services.
 					</p>
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 						{/* Example Project Card */}
