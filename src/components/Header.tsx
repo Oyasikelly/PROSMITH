@@ -45,7 +45,7 @@ function Navigation() {
 
 				<SlideInLeftWhenVisible>
 					<a
-						href="https://wa.me/234XXXXXXXXXX"
+						href="https://wa.me/+2348168090487"
 						target="_blank"
 						rel="noopener noreferrer"
 						className="text-white px-4 py-2 rounded-md flex items-center gap-2 font-medium group transition-all">
@@ -93,7 +93,7 @@ function Navigation() {
 							{/* WhatsApp button */}
 							<FadeInWhenVisible>
 								<a
-									href="https://wa.me/234XXXXXXXXXX"
+									href="https://wa.me/+2348168090487"
 									target="_blank"
 									rel="noopener noreferrer"
 									className="text-white py-2 rounded-md flex items-center gap-2 font-medium group transition-all">
