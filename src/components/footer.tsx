@@ -43,7 +43,7 @@ export default function Footer() {
 							<div>
 								<h3 className="font-semibold text-lg mb-3">Our Location</h3>
 								<p className="flex items-center gap-2 text-white/70">
-									<FaMapMarkerAlt /> 123 Main Street, City, Country
+									<FaMapMarkerAlt /> Warri, Delta, Nigeria
 								</p>
 							</div>
 						</SlideInLeftWhenVisible>
