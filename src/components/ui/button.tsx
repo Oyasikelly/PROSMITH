@@ -56,7 +56,7 @@ function Button({
 	url,
 	...props
 }: ButtonProps) {
-	const Comp: any = asChild ? Slot : url ? "a" : "button";
+	const Comp: React.ElementType = asChild ? Slot : url ? "a" : "button";
 
 	return (
 		<Comp

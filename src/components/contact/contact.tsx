@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Mail, Phone, MapPin, Globe } from "lucide-react";
 import {
 	SlideInLeftWhenVisible,
@@ -9,6 +9,19 @@ import { services } from "@/data/services";
 import { useSearchParams } from "next/navigation";
 
 export default function ContactPage() {
+	return (
+		<Suspense
+			fallback={
+				<div className="text-white text-center py-20">
+					Loading contact form...
+				</div>
+			}>
+			<ContactForm />
+		</Suspense>
+	);
+}
+
+function ContactForm() {
 	const searchParams = useSearchParams();
 	const serviceFromUrl = searchParams.get("service") || "";
 

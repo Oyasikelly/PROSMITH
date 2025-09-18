@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { projects } from "@/data/projects";
 import { services } from "@/data/services";
 import { testimonials } from "@/data/testtimonies";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { FadeInWhenVisible } from "@/components/animations/fadeInWhenVisible";
@@ -165,7 +165,7 @@ function Services() {
 							tailored solutions that drive success and foster growth.
 						</p>
 						<p className="text-base md:text-lg">
-							Whether you're looking for strategic consulting, project
+							Whether you&apos;re looking for strategic consulting, project
 							management, or specialized technical support, our team of
 							experienced professionals is here to help you navigate complex
 							challenges and achieve your business objectives with confidence.
@@ -224,8 +224,8 @@ function Projects() {
 					<p className="text-base md:text-lg mb-12">
 						Explore our portfolio of successful projects that showcase our
 						expertise and commitment to excellence. From innovative solutions to
-						transformative outcomes, see how we've helped our clients achieve
-						their goals.
+						transformative outcomes, see how we&apos;ve helped our clients
+						achieve their goals.
 					</p>
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 						{/* Example Project Card */}
@@ -294,7 +294,6 @@ function Experience() {
 }
 
 function Counter({ label, value }: { label: string; value: number }) {
-	const controls = useAnimation();
 	const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 });
 	const [count, setCount] = useState(0);
 
@@ -438,7 +437,7 @@ function Testimonials({ testimonials }: TestimonialsProps) {
 										transition={{ duration: 0.5, ease: "easeInOut" }}
 										className="mb-8">
 										<p className="mb-4 text-center md:text-left italic">
-											"{testimony.testimony}"
+											&quot;{testimony.testimony}&quot;
 										</p>
 										<div className="flex items-center">
 											<img

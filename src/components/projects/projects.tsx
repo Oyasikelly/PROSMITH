@@ -64,6 +64,7 @@ export default function ProjectsPage() {
 		preventScrollOnSwipe: true,
 		trackMouse: true, // allows dragging on desktop too
 	});
+
 	return (
 		<div className="min-h-screen w-full overflow-hidden ">
 			{/* HERO */}
@@ -86,9 +87,17 @@ interface ProjectCardsProps {
 	handlePrev: () => void;
 	handleNext: () => void;
 	currentIndex: number;
-	handlers: any;
+	handlers: ReturnType<typeof useSwipeable>;
 	direction: "left" | "right";
-	variants: any;
+	variants: {
+		enter: (direction: "left" | "right") => { x: number; opacity: number };
+		center: { x: number; opacity: number; transition: { duration: number } };
+		exit: (direction: "left" | "right") => {
+			x: number;
+			opacity: number;
+			transition: { duration: number };
+		};
+	};
 }
 
 function ProjectsCards({
