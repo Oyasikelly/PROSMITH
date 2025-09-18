@@ -9,6 +9,8 @@ import { services } from "@/data/services";
 import { useSearchParams } from "next/navigation";
 import { FaCheckCircle } from "react-icons/fa";
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
+import Loading from "../loading";
 
 export default function ContactPage() {
 	return (
@@ -29,6 +31,7 @@ function ContactForm() {
 	const [submitted, setSubmitted] = useState(false);
 
 	const [dateTime, setDateTime] = useState(new Date());
+	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
@@ -60,34 +63,41 @@ function ContactForm() {
 	) {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	}
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 
-		// For now, just log form data
-		console.log("Form Submitted:", formData);
+		setLoading(true);
 
-		// You can send data to a backend API here, e.g.:
-		// fetch("/api/contact", {
-		//   method: "POST",
-		//   headers: { "Content-Type": "application/json" },
-		//   body: JSON.stringify(formData),
-		// });
+		try {
+			const res = await fetch("/api/contact", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(formData),
+			});
 
-		// Reset form after submission
+			const data = await res.json();
 
-		setSubmitted(true);
-
-		setFormData({
-			name: "",
-			email: "",
-			message: "",
-			service: "",
-			date: new Date().toLocaleDateString(),
-			time: new Date().toLocaleTimeString(),
-		});
-
-		setTimeout(() => setSubmitted(false), 5000);
+			if (res.ok) {
+				toast.success(data.message || "Message sent successfully ✅");
+				setFormData({
+					name: "",
+					email: "",
+					message: "",
+					service: "",
+					date: new Date().toLocaleDateString(),
+					time: new Date().toLocaleTimeString(),
+				});
+				setSubmitted(true);
+			} else {
+				toast.error(data.message || "Failed to send message ❌");
+			}
+		} catch (error) {
+			toast.error("Something went wrong, please try again ❌");
+		} finally {
+			setLoading(false);
+		}
 	};
+
 	return (
 		<section className="relative w-full md:min-h-screen overflow-hidden">
 			{/* Background image (absolutely positioned so it doesn't push content height) */}
@@ -158,78 +168,81 @@ function ContactForm() {
 
 					{/* Right (form) */}
 					<SlideInRightWhenVisible>
-						{submitted ? (
-							<div className="flex flex-col items-center justify-center text-center text-white/90 py-10">
-								<FaCheckCircle className="w-12 h-12 text-green-400 mb-4" />
-								<h2 className="text-2xl font-semibold">Message Sent!</h2>
-								<p className="mt-2 text-white/70">
-									Thank you for reaching out. We&apos;ll get back to you soon.
-								</p>
-							</div>
-						) : (
-							<div className="bg-white/8 backdrop-blur-xs p-6 rounded-xl shadow-lg">
-								<h2 className="text-xl font-semibold mb-4 text-white/90">
-									Send us a message
-								</h2>
-								<form
-									onSubmit={handleSubmit}
-									className="space-y-4">
-									<input
-										type="text"
-										placeholder="Your Name"
-										required
-										name="name"
-										value={formData.name}
-										onChange={handleChange}
-										className="w-full px-4 py-2 rounded-lg bg-transparent text-white/80 border border-white/20 focus:outline-none focus:ring-2 focus:ring-primary"
-									/>
-									<input
-										type="email"
-										placeholder="Your Email"
-										required
-										name="email"
-										value={formData.email}
-										onChange={handleChange}
-										className="w-full px-4 py-2 rounded-lg bg-transparent text-white/80 border border-white/20 focus:outline-none focus:ring-2 focus:ring-primary"
-									/>
-									<select
-										name="service"
-										required
-										value={formData.service}
-										onChange={handleChange}
-										className="w-full px-4 py-2 rounded-lg bg-transparent text-white/80 border border-white/20 placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-primary">
-										<option
-											value=""
-											disabled
-											className="bg-black text-white/80">
-											Select a service
-										</option>
-										{services.map((service, idx) => (
+						<div className="relative">
+							{loading && <Loading text="Sending..." />}
+							{submitted ? (
+								<div className="flex flex-col items-center justify-center text-center text-white/90 py-10">
+									<FaCheckCircle className="w-12 h-12 text-green-400 mb-4" />
+									<h2 className="text-2xl font-semibold">Message Sent!</h2>
+									<p className="mt-2 text-white/70">
+										Thank you for reaching out. We&apos;ll get back to you soon.
+									</p>
+								</div>
+							) : (
+								<div className="relative z-10 bg-white/8 backdrop-blur-xs p-6 rounded-xl shadow-lg">
+									<h2 className="text-xl font-semibold mb-4 text-white/90">
+										Send us a message
+									</h2>
+									<form
+										onSubmit={handleSubmit}
+										className="space-y-4">
+										<input
+											type="text"
+											placeholder="Your Name"
+											required
+											name="name"
+											value={formData.name}
+											onChange={handleChange}
+											className="w-full px-4 py-2 rounded-lg bg-transparent text-white/80 border border-white/20 focus:outline-none focus:ring-2 focus:ring-primary"
+										/>
+										<input
+											type="email"
+											placeholder="Your Email"
+											required
+											name="email"
+											value={formData.email}
+											onChange={handleChange}
+											className="w-full px-4 py-2 rounded-lg bg-transparent text-white/80 border border-white/20 focus:outline-none focus:ring-2 focus:ring-primary"
+										/>
+										<select
+											name="service"
+											required
+											value={formData.service}
+											onChange={handleChange}
+											className="w-full px-4 py-2 rounded-lg bg-transparent text-white/80 border border-white/20 placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-primary">
 											<option
-												key={idx}
-												value={service.name}
-												className="bg-black text-white">
-												{service.name}
+												value=""
+												disabled
+												className="bg-black text-white/80">
+												Select a service
 											</option>
-										))}
-									</select>
-									<textarea
-										placeholder="Your Message"
-										rows={5}
-										required
-										name="message"
-										value={formData.message}
-										onChange={handleChange}
-										className="w-full px-4 py-2 rounded-lg bg-transparent text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-primary"
-									/>
-									<button
-										type="submit"
-										className="w-full bg-primary text-white py-2 rounded-lg hover:bg-primary/80 transition">
-										Send Message
-									</button>
-								</form>
-							</div>
-						)}
+											{services.map((service, idx) => (
+												<option
+													key={idx}
+													value={service.name}
+													className="bg-black text-white">
+													{service.name}
+												</option>
+											))}
+										</select>
+										<textarea
+											placeholder="Your Message"
+											rows={5}
+											required
+											name="message"
+											value={formData.message}
+											onChange={handleChange}
+											className="w-full px-4 py-2 rounded-lg bg-transparent text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-primary"
+										/>
+										<button
+											type="submit"
+											className="w-full bg-primary text-white py-2 rounded-lg hover:bg-primary/80 transition">
+											Send Message
+										</button>
+									</form>
+								</div>
+							)}
+						</div>
 					</SlideInRightWhenVisible>
 				</div>
 			</div>
