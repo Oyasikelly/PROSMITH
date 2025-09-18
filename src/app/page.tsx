@@ -5,19 +5,13 @@ import { services } from "@/data/services";
 import { testimonials } from "@/data/testtimonies";
 import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { motion, useAnimation, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FadeInWhenVisible } from "@/components/animations/fadeInWhenVisible";
 import { useInView } from "react-intersection-observer";
 import {
 	SlideInLeftWhenVisible,
 	SlideInRightWhenVisible,
 } from "@/components/animations/slideInAnimations";
-
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-	title: "Home",
-};
 
 function WelcomeBanner() {
 	return (
