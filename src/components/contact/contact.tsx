@@ -7,6 +7,8 @@ import {
 } from "../animations/slideInAnimations";
 import { services } from "@/data/services";
 import { useSearchParams } from "next/navigation";
+import { FaCheckCircle } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 export default function ContactPage() {
 	return (
@@ -24,6 +26,7 @@ export default function ContactPage() {
 function ContactForm() {
 	const searchParams = useSearchParams();
 	const serviceFromUrl = searchParams.get("service") || "";
+	const [submitted, setSubmitted] = useState(false);
 
 	const [dateTime, setDateTime] = useState(new Date());
 	const [formData, setFormData] = useState({
@@ -71,6 +74,9 @@ function ContactForm() {
 		// });
 
 		// Reset form after submission
+
+		setSubmitted(true);
+
 		setFormData({
 			name: "",
 			email: "",
@@ -79,9 +85,11 @@ function ContactForm() {
 			date: new Date().toLocaleDateString(),
 			time: new Date().toLocaleTimeString(),
 		});
+
+		setTimeout(() => setSubmitted(false), 5000);
 	};
 	return (
-		<section className="relative w-full md:min-h-screen">
+		<section className="relative w-full md:min-h-screen overflow-hidden">
 			{/* Background image (absolutely positioned so it doesn't push content height) */}
 			<img
 				src="/assets/test-img.jpg"
@@ -96,8 +104,14 @@ function ContactForm() {
 			<div className="relative z-10 px-6 py-15 md:py-44">
 				<div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-start md:items-center">
 					{/* Left (info) */}
+
 					<div className="relative pl-10 md:pl-16 text-white/90">
-						<div className="absolute left-12 md:left-18 top-0 bottom-0 w-[2px] bg-primary/40" />
+						<motion.div
+							className="absolute left-12 md:left-18 top-0 bottom-0 w-[2px] bg-primary/40" // adjust thickness & color
+							initial={{ height: 0 }}
+							animate={{ height: "auto" }} // final height
+							transition={{ duration: 2, ease: "easeOut" }}
+						/>
 
 						<SlideInLeftWhenVisible>
 							<div className="mb-6 pl-8">
@@ -144,68 +158,78 @@ function ContactForm() {
 
 					{/* Right (form) */}
 					<SlideInRightWhenVisible>
-						<div className="bg-white/8 backdrop-blur-xs p-6 rounded-xl shadow-lg">
-							<h2 className="text-xl font-semibold mb-4 text-white/90">
-								Send us a message
-							</h2>
-							<form
-								onSubmit={handleSubmit}
-								className="space-y-4">
-								<input
-									type="text"
-									placeholder="Your Name"
-									required
-									name="name"
-									value={formData.name}
-									onChange={handleChange}
-									className="w-full px-4 py-2 rounded-lg bg-transparent text-white/80 border border-white/20 focus:outline-none focus:ring-2 focus:ring-primary"
-								/>
-								<input
-									type="email"
-									placeholder="Your Email"
-									required
-									name="email"
-									value={formData.email}
-									onChange={handleChange}
-									className="w-full px-4 py-2 rounded-lg bg-transparent text-white/80 border border-white/20 focus:outline-none focus:ring-2 focus:ring-primary"
-								/>
-								<select
-									name="service"
-									required
-									value={formData.service}
-									onChange={handleChange}
-									className="w-full px-4 py-2 rounded-lg bg-transparent text-white/80 border border-white/20 placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-primary">
-									<option
-										value=""
-										disabled
-										className="bg-black text-white/80">
-										Select a service
-									</option>
-									{services.map((service, idx) => (
+						{submitted ? (
+							<div className="flex flex-col items-center justify-center text-center text-white/90 py-10">
+								<FaCheckCircle className="w-12 h-12 text-green-400 mb-4" />
+								<h2 className="text-2xl font-semibold">Message Sent!</h2>
+								<p className="mt-2 text-white/70">
+									Thank you for reaching out. We&apos;ll get back to you soon.
+								</p>
+							</div>
+						) : (
+							<div className="bg-white/8 backdrop-blur-xs p-6 rounded-xl shadow-lg">
+								<h2 className="text-xl font-semibold mb-4 text-white/90">
+									Send us a message
+								</h2>
+								<form
+									onSubmit={handleSubmit}
+									className="space-y-4">
+									<input
+										type="text"
+										placeholder="Your Name"
+										required
+										name="name"
+										value={formData.name}
+										onChange={handleChange}
+										className="w-full px-4 py-2 rounded-lg bg-transparent text-white/80 border border-white/20 focus:outline-none focus:ring-2 focus:ring-primary"
+									/>
+									<input
+										type="email"
+										placeholder="Your Email"
+										required
+										name="email"
+										value={formData.email}
+										onChange={handleChange}
+										className="w-full px-4 py-2 rounded-lg bg-transparent text-white/80 border border-white/20 focus:outline-none focus:ring-2 focus:ring-primary"
+									/>
+									<select
+										name="service"
+										required
+										value={formData.service}
+										onChange={handleChange}
+										className="w-full px-4 py-2 rounded-lg bg-transparent text-white/80 border border-white/20 placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-primary">
 										<option
-											key={idx}
-											value={service.name}
-											className="bg-black text-white">
-											{service.name}
+											value=""
+											disabled
+											className="bg-black text-white/80">
+											Select a service
 										</option>
-									))}
-								</select>
-								<textarea
-									placeholder="Your Message"
-									rows={5}
-									required
-									name="message"
-									value={formData.message}
-									onChange={handleChange}
-									className="w-full px-4 py-2 rounded-lg bg-transparent text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-primary"
-								/>
-								<button
-									type="submit"
-									className="w-full bg-primary text-white py-2 rounded-lg hover:bg-primary/80 transition">
-									Send Message
-								</button>
-							</form>
-						</div>
+										{services.map((service, idx) => (
+											<option
+												key={idx}
+												value={service.name}
+												className="bg-black text-white">
+												{service.name}
+											</option>
+										))}
+									</select>
+									<textarea
+										placeholder="Your Message"
+										rows={5}
+										required
+										name="message"
+										value={formData.message}
+										onChange={handleChange}
+										className="w-full px-4 py-2 rounded-lg bg-transparent text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-primary"
+									/>
+									<button
+										type="submit"
+										className="w-full bg-primary text-white py-2 rounded-lg hover:bg-primary/80 transition">
+										Send Message
+									</button>
+								</form>
+							</div>
+						)}
 					</SlideInRightWhenVisible>
 				</div>
 			</div>
