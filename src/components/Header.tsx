@@ -119,14 +119,16 @@ export default function Header() {
 			<div
 				id="logo"
 				className="text-2xl font-bold">
-				<Link href="./">
-					<div className="relative">
-						Prosmith
-						<h1 className="text-primary absolute -top-[41px] left-[65px] md:-top-[43px]  md:left-[67px] text-6xl  ">
-							.
-						</h1>
-					</div>
-				</Link>
+				<SlideInLeftWhenVisible>
+					<Link href="./">
+						<div className="relative">
+							Prosmith
+							<h1 className="text-primary absolute -top-[41px] left-[65px] md:-top-[43px]  md:left-[67px] text-6xl  ">
+								.
+							</h1>
+						</div>
+					</Link>
+				</SlideInLeftWhenVisible>
 			</div>
 
 			<Navigation />

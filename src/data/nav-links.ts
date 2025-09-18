@@ -7,7 +7,7 @@ export interface NavLink {
 const links = [
 	{ label: "Home", href: "/", id: 1 },
 	{ label: "Services", href: "/services", id: 2 },
-	{ label: "Testimonials", href: "/testimonials", id: 3 },
+	{ label: "Projects", href: "/projects", id: 3 },
 	{ label: "Contact", href: "/contact", id: 4 },
 ];
 

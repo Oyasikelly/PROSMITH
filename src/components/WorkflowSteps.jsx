@@ -82,7 +82,7 @@ export default function WorkflowSteps() {
 		<section
 			ref={containerRef}
 			className="py-16 px-6 md:px-12">
-			<div className="max-w-7xl mx-auto text-center mb-12">
+			<div className="max-w-7xl mx-auto text-center mb-25 md:mb-12">
 				<FadeInWhenVisible>
 					<h1 className="text-3xl md:text-4xl font-bold mb-4 text-white/80">
 						Our Workflow
@@ -165,7 +165,8 @@ function StepItem({ step, index, scrollDirection }) {
 			</div>
 
 			{/* center step number */}
-			<div className="absolute left-1/2 transform -translate-x-1/2 bg-primary  w-10 h-10 rounded-full flex items-center justify-center font-bold text-gray-700">
+			<div
+				className={`absolute left-1/2 transform -translate-x-1/2 -top-15 md:top-1/2 md:-translate-y-1/2 ${step.iconColor}  w-10 h-10 rounded-full flex items-center justify-center font-bold text-gray-700`}>
 				{step.id}
 			</div>
 		</motion.div>

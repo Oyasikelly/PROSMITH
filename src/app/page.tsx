@@ -15,7 +15,7 @@ import {
 
 function WelcomeBanner() {
 	return (
-		<section className="relative h-screen w-full">
+		<section className="h-screen w-full">
 			<img
 				src="/assets/test-img.jpg"
 				alt="test Image"
@@ -23,7 +23,7 @@ function WelcomeBanner() {
 			/>
 			<div
 				id="overlay"
-				className="h-full w-full bg-black/30 absolute top-0 left-0 right-0 bottom-0">
+				className="h-full w-full bg-black/50 absolute top-0 left-0 right-0 bottom-0">
 				<div className="max-w-7xl h-screen mx-auto px-6 py-6 flex flex-col justify-center">
 					<FadeInWhenVisible>
 						{/* Hero Section Content */}
@@ -78,15 +78,15 @@ function WelcomeBanner() {
 
 function About() {
 	return (
-		<section className="bg-foreground px-6 py-12">
+		<section className="relative bg-foreground px-6 py-12">
 			<div className="max-w-7xl mx-auto px-0 md:px-6">
 				<SlideInLeftWhenVisible>
-					<h1 className="text-2xl md:text-4xl font-bold mb-6 text-white/80">
+					<h1 className="text-2xl md:text-4xl font-bold mb-6 text-white/90">
 						<span className="border-b-2 border-primary pb-1">Who we are</span>
 					</h1>
 				</SlideInLeftWhenVisible>
 
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-white/70">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-white/80">
 					<div className="">
 						<SlideInLeftWhenVisible>
 							<h2 className="text-2xl md:text-4xl mb-4 font-semibold">
@@ -123,13 +123,15 @@ function About() {
 							</Button>
 						</FadeInWhenVisible>
 					</div>
-					<div>
-						<img
-							src="assets/test-img.jpg"
-							alt=""
-							className="w-full h-full object-cover"
-						/>
-					</div>
+					<SlideInRightWhenVisible>
+						<div>
+							<img
+								src="assets/test-img.jpg"
+								alt=""
+								className="w-full h-full object-cover"
+							/>
+						</div>
+					</SlideInRightWhenVisible>
 				</div>
 			</div>
 		</section>
@@ -142,12 +144,12 @@ function Services() {
 	return (
 		<section
 			id="Services"
-			className="bg-background mx-auto px-6 py-12 h-full">
+			className="relative bg-background mx-auto px-6 py-12 h-full">
 			<div className="max-w-7xl mx-auto px-0 md:px-6 grid grid-cols-1 md:grid-cols-3 gap-0 text-gray-600">
 				{/* Left (smaller column) */}
 				<SlideInLeftWhenVisible>
 					<div className="md:col-span-1">
-						<h2 className="text-3xl md:text-4xl font-bold mb-4">
+						<h2 className="text-3xl md:text-4xl font-bold mb-8">
 							<span className="border-b-2 border-primary pb-1">Services</span>
 						</h2>
 					</div>
@@ -211,10 +213,12 @@ function Services() {
 
 function Projects() {
 	return (
-		<section id="projects">
+		<section
+			id="projects"
+			className="bg-background h-full relative">
 			<div className="max-w-7xl mx-auto px-6 py-6 text-gray-600">
 				<FadeInWhenVisible>
-					<h2 className="text-3xl md:text-4xl font-bold mb-20">
+					<h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-20">
 						<span className="border-b-2 border-primary pb-1">Projects</span>
 					</h2>
 					<p className="text-base md:text-lg mb-12">
@@ -273,7 +277,7 @@ function Experience() {
 	];
 
 	return (
-		<section className="bg-ring h-full">
+		<section className="bg-ring h-full  relative">
 			<div className="max-w-7xl mx-auto px-6 py-20">
 				<div className="text-white/90 flex flex-col md:flex-row text-center space-y-4 items-center justify-center gap-10">
 					{stats.map((stat, index) => (
@@ -402,7 +406,7 @@ function Testimonials({ testimonials }: TestimonialsProps) {
 	return (
 		<section
 			id="testimonials"
-			className="bg-foreground mx-auto px-4 py-12 h-full">
+			className="relative bg-foreground mx-auto px-4 py-12 h-full">
 			<div className="flex items-center justify-center space-x-4">
 				{/* Prev Button */}
 				<div
@@ -414,12 +418,12 @@ function Testimonials({ testimonials }: TestimonialsProps) {
 				{/* Testimonials */}
 				<div className="max-w-7xl mx-auto px-0 md:px-6 py-6 text-gray-600 overflow-hidden">
 					<FadeInWhenVisible>
-						<h2 className="text-white/80 text-2xl text-center md:text-left md:text-4xl font-bold mb-20">
+						<h2 className="text-white/90 text-2xl text-center md:text-left md:text-4xl font-bold mb-20">
 							From Our Satisfied Clients
 						</h2>
 					</FadeInWhenVisible>
 					<SlideInLeftWhenVisible>
-						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-white/70">
+						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-white/80">
 							<AnimatePresence
 								mode="wait"
 								custom={direction}>

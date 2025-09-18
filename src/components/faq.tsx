@@ -6,6 +6,7 @@ import {
 	SlideInLeftWhenVisible,
 	SlideInRightWhenVisible,
 } from "./animations/slideInAnimations";
+import { AnimatePresence, motion } from "framer-motion";
 
 const faqs = [
 	{
@@ -60,9 +61,9 @@ export default function FAQ() {
 					</p>
 				</SlideInLeftWhenVisible>
 				<FadeInWhenVisible>
-					<button className="flex items-center gap-3 bg-primary text-white px-6 py-3 rounded-md font-medium hover:bg-primary/70 transition">
+					<button className="hidden md:flex order-2 md:order-1 items-center gap-3 bg-primary text-white px-6 py-3 rounded-md font-medium hover:bg-primary/70 transition group">
 						Connect with Us
-						<span className="bg-white p-1 rounded-full hover:translate-x-3 transition-all duration-300 text-primary">
+						<span className="bg-white p-1 rounded-full group-hover:translate-x-3 transition-all duration-300 text-primary">
 							<FiArrowRight size={18} />
 						</span>
 					</button>
@@ -85,12 +86,34 @@ export default function FAQ() {
 									<FiPlus className="text-primary" />
 								)}
 							</div>
-							{openIndex === index && (
-								<p className="text-gray-600 mt-3">{faq.answer}</p>
-							)}
+
+							{/* Animate answer */}
+							<AnimatePresence>
+								{openIndex === index && (
+									<motion.p
+										key="content"
+										initial={{ opacity: 0, height: 0 }}
+										animate={{ opacity: 1, height: "auto" }}
+										exit={{ opacity: 0, height: 0 }}
+										transition={{ duration: 0.4, ease: "easeInOut" }}
+										className="text-gray-600 mt-3 overflow-hidden">
+										{faq.answer}
+									</motion.p>
+								)}
+							</AnimatePresence>
 						</SlideInRightWhenVisible>
 					</div>
 				))}
+				<FadeInWhenVisible>
+					<div className="flex items-center justify-center">
+						<button className="flex md:hidden items-center gap-3 bg-primary text-white mt-8 px-6 py-3 rounded-md font-medium hover:bg-primary/70 transition">
+							Connect with Us
+							<span className="bg-white p-1 rounded-full hover:translate-x-3 transition-all duration-300 text-primary">
+								<FiArrowRight size={18} />
+							</span>
+						</button>
+					</div>
+				</FadeInWhenVisible>
 			</div>
 		</section>
 	);
